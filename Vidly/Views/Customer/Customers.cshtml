@@ -5,4 +5,16 @@
 }
 
 <h2>@Model.Name</h2>
+<ul>
+    <li>
+        Membership Type: @Model.MembershipType.Name
+    </li>
 
+    @if (null != Model.DOB)
+    {
+        <li>
+            Birth Date: @Model.DOB.Value.ToString("MM/dd/yyyy")
+        </li>
+    }
+
+</ul>

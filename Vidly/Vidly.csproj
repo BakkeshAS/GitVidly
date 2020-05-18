@@ -203,6 +203,14 @@
     <Compile Include="Migrations\202005181309267_MembershipTypeNameDataSeed.Designer.cs">
       <DependentUpon>202005181309267_MembershipTypeNameDataSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005181329154_ColumnAddition_DOB_Customer.cs" />
+    <Compile Include="Migrations\202005181329154_ColumnAddition_DOB_Customer.Designer.cs">
+      <DependentUpon>202005181329154_ColumnAddition_DOB_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181400070_ignore.cs" />
+    <Compile Include="Migrations\202005181400070_ignore.Designer.cs">
+      <DependentUpon>202005181400070_ignore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -316,6 +324,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005181309267_MembershipTypeNameDataSeed.resx">
       <DependentUpon>202005181309267_MembershipTypeNameDataSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181329154_ColumnAddition_DOB_Customer.resx">
+      <DependentUpon>202005181329154_ColumnAddition_DOB_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181400070_ignore.resx">
+      <DependentUpon>202005181400070_ignore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
