@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -43,7 +44,7 @@ namespace Vidly.Controllers
         public ActionResult AllCustomers()// name of an action and the view file name should match to create a connection.
         {
             // var customers = _context.Customers; 
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
            
             return View(customers);
         }
