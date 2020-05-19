@@ -13,7 +13,8 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Name { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
-        public MembershipType MembershipType { get; set; }
+        public MembershipType MembershipType { get; set; } // need to know why this needs to be included here?, 
+        //My guess - to access this in controller and view. A column for the same will not be created in db tbl.
         public byte MembershipTypeId { get; set; }
         public DateTime? DOB { get; set; }
     }

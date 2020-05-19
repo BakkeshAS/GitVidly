@@ -5,11 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Movies
         public ActionResult Index()
         {
@@ -19,17 +30,17 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            //var movie = new List<Movie>();
-            //movie.Add(new Movie() { Name = "Shrek" });
-            //movie.Add(new Movie() { Name = "Avengers" });
-            var movie = new MoviesCollectionViewModel();
-            
-            movie.Movies.Add(new Movie() {Id=1, Name = "Shrek" });
-            movie.Movies.Add(new Movie() {Id=2, Name = "Avengers" });
+            var movie = _context.Movies.Include(c => c.GenreType).ToList();
 
             return View(movie);// will return viewresult object derived from viewresultbase which inturn derived from ActionResults.
         }
 
+        public ActionResult MovieDetails(int Id)
+        {
+            var movie = _context.Movies.Include(c => c.GenreType).SingleOrDefault(c => c.Id == Id);
+
+            return View(movie);
+        }
         // GET: Movies
         public ActionResult Edit(int Id)
         {
@@ -41,5 +52,6 @@ namespace Vidly.Controllers
         {
             return Content(year +" "+ month);
         }
+       
     }
 }

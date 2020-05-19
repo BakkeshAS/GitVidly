@@ -211,9 +211,22 @@
     <Compile Include="Migrations\202005181400070_ignore.Designer.cs">
       <DependentUpon>202005181400070_ignore.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005190632510_GenreAdded_MovieModified.cs" />
+    <Compile Include="Migrations\202005190632510_GenreAdded_MovieModified.Designer.cs">
+      <DependentUpon>202005190632510_GenreAdded_MovieModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005190636575_GenreSeedData.cs" />
+    <Compile Include="Migrations\202005190636575_GenreSeedData.Designer.cs">
+      <DependentUpon>202005190636575_GenreSeedData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005190652257_MoviesRemoveGenreId.cs" />
+    <Compile Include="Migrations\202005190652257_MoviesRemoveGenreId.Designer.cs">
+      <DependentUpon>202005190652257_MoviesRemoveGenreId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\GenreType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -288,6 +301,7 @@
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Customer\AllCustomers.cshtml" />
     <Content Include="Views\Customer\Customers.cshtml" />
+    <Content Include="Views\Movies\MovieDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -330,6 +344,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005181400070_ignore.resx">
       <DependentUpon>202005181400070_ignore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190632510_GenreAdded_MovieModified.resx">
+      <DependentUpon>202005190632510_GenreAdded_MovieModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190636575_GenreSeedData.resx">
+      <DependentUpon>202005190636575_GenreSeedData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190652257_MoviesRemoveGenreId.resx">
+      <DependentUpon>202005190652257_MoviesRemoveGenreId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

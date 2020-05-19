@@ -1,14 +1,38 @@
-﻿@model Vidly.ViewModels.MoviesCollectionViewModel
+﻿@model List<Vidly.Models.Movie>
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    @foreach(var element in Model.Movies)
-    {
-<h2>@element.Name</h2>
-    }
+<h2>All Movies</h2>
+@if (Model.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
+                </td>
+                <td>
+                    @item.GenreType.Name
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+
+    <h3>No Customers to show!</h3>
+}
 
 
 
