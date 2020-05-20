@@ -30,16 +30,18 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = _context.Movies.Include(c => c.GenreType).ToList();
+            // var movie = _context.Movies.Include(c => c.GenreType).ToList();
 
-            return View(movie);// will return viewresult object derived from viewresultbase which inturn derived from ActionResults.
+            //return View(movie);// will return viewresult object derived from viewresultbase which inturn derived from ActionResults.
+            return View();
         }
 
         public ActionResult MovieDetails(int Id)
         {
-            var movie = _context.Movies.Include(c => c.GenreType).SingleOrDefault(c => c.Id == Id);
+           // var movie = _context.Movies.Include(c => c.GenreType).SingleOrDefault(c => c.Id == Id);
 
-            return View(movie);
+            //return View(movie);
+            return View();
         }
         // GET: Movies
         public ActionResult Edit(int Id)
@@ -51,6 +53,17 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year +" "+ month);
+        }
+
+        [HttpPost]
+        public ActionResult Save()
+        {
+            return View();
+        }
+
+        public ActionResult MovieForm()
+        {
+            return View();
         }
        
     }

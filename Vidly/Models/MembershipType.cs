@@ -8,6 +8,7 @@ namespace Vidly.Models
 {
     public class MembershipType
     {
+        // note here the type of Id is byte. 
         public byte Id { get; set; }
         [Required]
         [StringLength(255)]

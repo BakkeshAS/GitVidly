@@ -223,6 +223,22 @@
     <Compile Include="Migrations\202005190652257_MoviesRemoveGenreId.Designer.cs">
       <DependentUpon>202005190652257_MoviesRemoveGenreId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201351448_ModificationInMovieModel.cs" />
+    <Compile Include="Migrations\202005201351448_ModificationInMovieModel.Designer.cs">
+      <DependentUpon>202005201351448_ModificationInMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201408293_MovieSModelTweeking.cs" />
+    <Compile Include="Migrations\202005201408293_MovieSModelTweeking.Designer.cs">
+      <DependentUpon>202005201408293_MovieSModelTweeking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201412499_ignore2.cs" />
+    <Compile Include="Migrations\202005201412499_ignore2.Designer.cs">
+      <DependentUpon>202005201412499_ignore2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201415100_FreshAdditionMoviesModel.cs" />
+    <Compile Include="Migrations\202005201415100_FreshAdditionMoviesModel.Designer.cs">
+      <DependentUpon>202005201415100_FreshAdditionMoviesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -233,8 +249,9 @@
     <Compile Include="Models\Movies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\MoviesCollectionViewModel.cs" />
-    <Compile Include="ViewModels\NewCustomerViewModel.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +321,7 @@
     <Content Include="Views\Customer\Customers.cshtml" />
     <Content Include="Views\Movies\MovieDetails.cshtml" />
     <Content Include="Views\Customer\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -355,6 +373,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005190652257_MoviesRemoveGenreId.resx">
       <DependentUpon>202005190652257_MoviesRemoveGenreId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201351448_ModificationInMovieModel.resx">
+      <DependentUpon>202005201351448_ModificationInMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201408293_MovieSModelTweeking.resx">
+      <DependentUpon>202005201408293_MovieSModelTweeking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201412499_ignore2.resx">
+      <DependentUpon>202005201412499_ignore2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201415100_FreshAdditionMoviesModel.resx">
+      <DependentUpon>202005201415100_FreshAdditionMoviesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
