@@ -13,6 +13,7 @@ namespace Vidly.Controllers
     // name of the controller excluding Controller part is important to 
     //create connection to the Customer folder in the views folder.
     {
+        #region AppDbContext
         private ApplicationDbContext _context;
 
         public CustomerController()
@@ -24,6 +25,7 @@ namespace Vidly.Controllers
         {
             _context.Dispose();
         }
+        #endregion
         // GET: Customer
         public ActionResult Index()
         {
@@ -35,7 +37,7 @@ namespace Vidly.Controllers
         {
             var customers = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == Id);
 
-            if(!String.IsNullOrEmpty(customers.Name))                       
+            if (!String.IsNullOrEmpty(customers.Name))
                 return View(customers);
             else
                 return HttpNotFound();
@@ -45,8 +47,50 @@ namespace Vidly.Controllers
         {
             // var customers = _context.Customers; 
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-           
+
             return View(customers);
+        }
+
+        //form actions
+        public ActionResult CustomerForm()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (0 == customer.Id)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.DOB = customer.DOB;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("AllCustomers", "Customer");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
     }
 }

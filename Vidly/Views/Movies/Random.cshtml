@@ -5,6 +5,9 @@
 }
 
 <h2>All Movies</h2>
+<span class="btn btn-primary">
+    @Html.ActionLink("Add Movie", "MovieDetails" + "/" + item.Id, "Movies")
+</span>
 @if (Model.Count > 0)
 {
     <table class="table table-bordered table-hover">
@@ -17,14 +20,17 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
-                </td>
-                <td>
-                    @item.GenreType.Name
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
+            </td>
+            <td>
+                @item.GenreType.Name
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "MovieDetails" + "/" + item.Id, "Movies")
+            </td>
+        </tr>
         }
     </table>
 }
