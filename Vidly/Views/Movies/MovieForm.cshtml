@@ -12,12 +12,13 @@ else
 {
     <h2>Edit Movie</h2>
 }
-
+@Html.ValidationSummary(true,"Please fix the following error/s")
 @using (Html.BeginForm("Save", "Movies"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Name)
         @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.ReleaseDate)
@@ -27,14 +28,21 @@ else
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.GenreTypeId)
         @Html.DropDownListFor(m => m.Movie.GenreTypeId, new SelectList(Model.GenreTypes, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.GenreTypeId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Stock)
         @Html.TextBoxFor(m => m.Movie.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.Stock)
     </div>
 
     @Html.HiddenFor(m => m.Movie.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary"> Save </button>
 }
 
 
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

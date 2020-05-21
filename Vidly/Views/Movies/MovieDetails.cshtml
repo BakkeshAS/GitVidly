@@ -10,10 +10,16 @@
         Genre: @Model.GenreType.Name
     </li>
     <li>
-        Release Date: @Model.ReleaseDate.ToString("dddd, dd MMMM yyyy")
+        @if (null != @Model.ReleaseDate.Value)
+        {
+            <span>Release Date:</span> @Model.ReleaseDate.Value.ToString("dddd, dd MMMM yyyy")
+        }
     </li>
     <li>
-        Date Added: @Model.DateAdded.ToString("dddd, dd MMMM yyyy")
+        @if (null != @Model.DateAdded.Value)
+        {
+            <span>Date Added:</span> @Model.DateAdded.Value.ToString("dddd, dd MMMM yyyy")
+        }
     </li>
     <li>
         Stock nos.: @Model.Stock
