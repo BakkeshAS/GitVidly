@@ -17,6 +17,7 @@
             <tr>
                 <th>Name</th>
                 <th>Genre</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -30,7 +31,7 @@
                 @item.GenreType.Name
             </td>
             <td>
-                @Html.ActionLink("Edit", "MovieDetails" + "/" + item.Id, "Movies")
+                @Html.ActionLink("Edit", "Edit" + "/" + item.Id, "Movies")
             </td>
         </tr>
         }

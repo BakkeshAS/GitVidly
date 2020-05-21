@@ -4,7 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Movie</h2>
+@if (null == Model.Movie)
+{
+    <h2>Add Movie</h2>
+}
+else
+{
+    <h2>Edit Movie</h2>
+}
+
 @using (Html.BeginForm("Save", "Movies"))
 {
     <div class="form-group">
@@ -17,14 +25,14 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.GenreType)
-        @Html.DropDownListFor(m => m.Movie.GenreType, new SelectList(Model.GenreTypes, "Id", "Name"), "Select Genre ", new { @class = "form-control" })
+        @Html.LabelFor(m => m.Movie.GenreTypeId)
+        @Html.DropDownListFor(m => m.Movie.GenreTypeId, new SelectList(Model.GenreTypes, "Id", "Name"), "Select Genre", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Stock)
         @Html.TextBoxFor(m => m.Movie.Stock, new { @class = "form-control" })
     </div>
-    
+
     @Html.HiddenFor(m => m.Movie.Id)
     <button type="submit" class="btn btn-primary"> Save </button>
 }
