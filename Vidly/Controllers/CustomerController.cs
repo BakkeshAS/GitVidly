@@ -66,7 +66,7 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)// added for validation purposes
             {
                 var viewModel = new CustomerFormViewModel
                 {

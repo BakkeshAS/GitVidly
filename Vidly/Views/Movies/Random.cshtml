@@ -7,33 +7,37 @@
 <h2>All Movies</h2>
 <span class="btn ">
 
-    @Html.ActionLink("Add Movie","MovieForm", "Movies")
-    
+    @Html.ActionLink("Add Movie", "MovieForm", "Movies")
+
 </span>
 @if (Model.Count > 0)
 {
-    <table class="table table-bordered table-hover">
+    <table id="tblMovies" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Genre</th>
-                <th></th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
-            </td>
-            <td>
-                @item.GenreType.Name
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit" + "/" + item.Id, "Movies")
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
+                </td>
+                <td>
+                    @item.GenreType.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit" + "/" + item.Id, "Movies")
+                </td>
+                <td>
+                    <button data-movies-id="@item.Id" class="btn-link js-delete">Delete</button>
+                </td>
+            </tr>
         }
     </table>
 }
@@ -43,9 +47,27 @@ else
     <h3>No Customers to show!</h3>
 }
 
-
-
-
-<h2></h2>
 @* every view has this property which gives access to the model which we passed to it in the controller *@
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#tblMovies").DataTable();
+            $("#tblMovies .js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this Movie?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + button.attr("data-movies-id"),
+                            method: "delete",
+                            success: function () {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
