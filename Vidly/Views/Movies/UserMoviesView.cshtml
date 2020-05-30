@@ -1,0 +1,47 @@
+﻿@model List<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "UserMoviesView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Movies</h2>
+
+@if (Model.Count > 0)
+{
+    <table id="tblMovies" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "MovieDetails" + "/" + item.Id, "Movies")
+                </td>
+                <td>
+                    @item.GenreType.Name
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+
+    <h3>No Movies to show!</h3>
+}
+
+@* every view has this property which gives access to the model which we passed to it in the controller *@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#tblMovies").DataTable();
+        });
+    </script>
+}

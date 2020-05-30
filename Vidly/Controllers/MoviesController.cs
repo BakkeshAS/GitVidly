@@ -33,9 +33,9 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = _context.Movies.Include(c => c.GenreType).ToList();
-
-            return View(movie);// will return viewresult object derived from viewresultbase which inturn derived from ActionResults.
-
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("Random",movie);// will return viewresult object derived from viewresultbase which inturn derived from ActionResults.
+            return View("UserMoviesView", movie);
         }
 
         public ActionResult MovieDetails(int Id)
@@ -45,6 +45,7 @@ namespace Vidly.Controllers
             return View(movie);
         }
         // GET: Movies
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -63,6 +64,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -78,7 +80,7 @@ namespace Vidly.Controllers
             else
             {
                 var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
-                
+
                 movieInDb.Name = movie.Name;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.DateAdded = DateTime.Now;
@@ -91,6 +93,8 @@ namespace Vidly.Controllers
             return RedirectToAction("Random", "Movies");
         }
 
+        
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MovieForm()
         {
             var viewModel = new MovieFormViewModel
@@ -99,6 +103,7 @@ namespace Vidly.Controllers
             };
             return View(viewModel);
         }
+        
 
     }
 }
